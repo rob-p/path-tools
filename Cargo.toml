@@ -3,6 +3,7 @@ name = "path-tools"
 version = "0.1.0"
 edition = "2021"
 license = "BSD-3-Clause-Attribution"
+license-file = "LICENSE"
 keywords = ["path", "utilities", "filesystem"]
 categories = ["filesystem"]
 repository = "https://github.com/rob-p/path-tools/"
@@ -10,7 +11,6 @@ homepage = "https://github.com/rob-p/path-tools/"
 readme = "README.md"
 description = "A library that provides convenience functions and traits for working with paths"
 authors = ["Rob Patro", "Rob Patro <rob.patro@gmail.com>"]
-
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
