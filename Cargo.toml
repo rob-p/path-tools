@@ -3,7 +3,6 @@ name = "path-tools"
 version = "0.0.0"
 edition = "2021"
 license = "BSD-3-Clause-Attribution"
-license-file = "LICENSE"
 keywords = ["path", "utilities", "filesystem"]
 categories = ["filesystem"]
 repository = "https://github.com/rob-p/path-tools/"
