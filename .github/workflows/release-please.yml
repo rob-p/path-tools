@@ -1,0 +1,39 @@
+on:
+  push:
+    branches:
+      - main
+
+name: release-please
+
+jobs:
+  release-please:
+    if: github.repository_owner == 'rob-p'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: GoogleCloudPlatform/release-please-action@v3
+        id: release_path_tools
+        with:
+          release-type: rust
+          package-name: path-tools
+          path: .
+
+      - name: Install stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+        if: ${{ steps.release_path_tools.outputs.release_created }}
+        with:
+          toolchain: stable
+          override: true
+
+      - uses: Swatinem/rust-cache@v1.3.0
+        if: ${{ steps.release_path_tools.outputs.release_created }}
+
+      - run: cargo test
+
+      - name: Publish path-tools
+        if: ${{ steps.release_path_tools.outputs.release_created }}
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --token ${{ secrets.CRATES_IO_TOKEN }}
