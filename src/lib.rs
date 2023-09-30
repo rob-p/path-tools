@@ -2,7 +2,9 @@ use std::ffi::{OsStr, OsString};
 use std::path::PathBuf;
 
 pub trait WithAdditionalExtension
-    where Self: Into<OsString> {
+where
+    Self: Into<OsString>,
+{
     fn with_additional_extension(&self, s: impl AsRef<OsStr>) -> Self;
 }
 
@@ -12,13 +14,13 @@ impl WithAdditionalExtension for PathBuf {
         let mut p: OsString = self.into();
         p.push(s);
         p.into()
-    } 
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use std::str::FromStr;
     use super::*;
+    use std::str::FromStr;
 
     #[test]
     fn can_append_extension() {
